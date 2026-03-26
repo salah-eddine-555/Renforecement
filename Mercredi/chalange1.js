@@ -102,7 +102,28 @@ for(i=0; i < contacts.length; i++){
 
 console.log(villes);
 
-
 let intoEntre = contacts.filter(c => c.entreprise == 'entreprise1');
 console.log(intoEntre);
+
+contacts[0].adresse.rue = 'Rue teste 1';
+contacts[0].adresse.code_postal = 3400;
+contacts[0].adresse.ville = 'ville test';
+contacts[0].adresse.pays = 'pay teste';
+
+console.log('contact modifiee : ', contacts[0]);
+
+const newContacts = contacts.map(c => ({
+    ...c,
+     dernierContact: new Date(Date.now() - Math.random()*1000 *60*60*60*24* 60),
+}))
+
+console.log(newContacts);
+
+
+let result = newContacts.filter(c => c.dernierContact > 30 /(24*60*60*1000));
+
+console.log('les contact plus de 30jours est : ', result);
+
+
+
 
