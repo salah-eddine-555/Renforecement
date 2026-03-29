@@ -60,3 +60,32 @@ for(i=0; i < equipes.length; i++){
 
     console.log("le classement ", equipes[i].nom,"--",equipes[i].point, 'pts', '(',equipes[i].diff,')')
 }
+
+let Equipe1 = equipes[0];
+let Equipe2 = equipes[1];
+
+
+let butsEquipe1 = Math.floor(Math.random() * 5);
+let butsEquipe2 = Math.floor(Math.random() * 5);
+
+Equipe1.buts_pour +=butsEquipe1;
+Equipe1.buts_centre += butsEquipe2;
+
+Equipe2.buts_pour +=butsEquipe2;
+Equipe2.buts_centre += butsEquipe1;
+
+Equipe1.matches_jeus +=1;
+Equipe2.matches_jeus +=1;
+
+if(butsEquipe1 > butsEquipe2){
+    Equipe1.point +=3;
+}else if(butsEquipe1 < butsEquipe2){
+    Equipe2.point +=3;
+}else{
+    Equipe1.point +=1;
+    Equipe2.point +=1;
+}
+
+
+console.log('Equipe1 : ', butsEquipe1, '-', butsEquipe2,  "Equipe2");
+console.log(equipes[0]);
