@@ -80,13 +80,48 @@ function trParDate(date){res.sort((a, b) => a.heure - b.heure);
     res.sort((a, b) => a.heure - b.heure);
 }
 
-function CalculerTauxOccupation(){
+function CalculerTauxOccupation(date){
+
+    let res = reservations.filter(res => res.date === date && res.statut === 'confirme');
+    let taux = {}
+    
+    for(let i = 0; i< res.length; i++){
+        if(!taux[res[i].heure]){
+            taux[res[i].heure] =0;
+        }   
+        taux[res[i].heure] += res[i].nombre_personnes;
+    }
+
+   for (let heure in taux) {
+    taux[heure] = ((taux[heure] / 30 ) * 100).toFixed(0);
+    }
+    
+
+    return taux;
     
 }
 
-reserver('salah',26,'2025-01-19', '2:00','0624494495');
-reserver('ahmed',26,'2025-01-19', '2:00','0624494495');
 
-annulerReservation(2);
+// annulerReservation(2);
+
+
+
+reserver('Salah', 4, '2025-01-19', '2:00', '0624494495'); 
+reserver('Omar', 10, '2025-01-19', '2:00', '0624488888'); 
+reserver('Fatima', 12, '2025-01-19', '2:00', '0624477777'); 
+reserver('Mouna', 5, '2025-01-19', '2:00', '0624466666'); //en att
+reserver('Ali', 3, '2025-01-19', '3:00', '0624455555'); 
+reserver('mohamed', 15, '2025-01-19', '3:00', '0624444444'); 
+reserver('hamid', 20, '2025-01-19', '3:00', '0624433333'); //en att
+reserver('Leila', 8, '2025-01-19', '4:00', '0624422222'); 
 
 console.log(reservations);
+
+console.log('test')
+
+annulerReservation(4);
+console.log(reservations);
+let tauxOccupation = CalculerTauxOccupation("2025-01-19");
+console.log('Taux occupation par créneau :', tauxOccupation);
+
+
